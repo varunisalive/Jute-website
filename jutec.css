@@ -1,0 +1,123 @@
+*{
+  padding: 0px;
+}
+
+body{
+    /* background-color: rgb(47, 152, 204); */
+    background-image: url('images\\bag-2179090.jpg');
+    margin-top: 0px;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+/* Navigation bar */
+
+nav a {
+  color: #fff;
+  text-decoration: none !important;
+}
+
+nav a:hover {
+  color: #df8931;
+}
+
+
+
+.navbar-brand{
+  font-family: 'Merriweather Sans', sans-serif;
+  font-weight: normal;
+  font-size: 25px;
+  text-align: center;
+  color: #dbcbbd;
+
+  /* background-color: rgb(1, 10, 14); */
+}
+
+.navbar {
+  height: 65px;
+  background-color: #290001;
+  box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.8);
+}
+
+.navbar-nav{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+}
+
+.nav-item {
+  padding: 1px 5px;
+
+}
+
+.ml-auto{
+  padding: 0px 5px;
+}
+
+.dropdown-menu{
+  background-color: #dbcbbd;
+}
+
+/* Login and download button  */
+
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+/* Description */
+
+.container-fluid {
+
+  padding: 0px;
+}
+
+
+
+#description {
+  padding: 200px 50px 120px 50px;
+}
+
+.info{
+  color: #fff;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+}
+
+.desc {
+
+}
+
+/* Footer */
+
+.copyright{
+  opacity: 0.5;
+  margin-top: 10px;
+}
+
+#footer{
+  font-family: "Montserrat";
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #D0D0D0;
+}
+
+.footer-link{
+  color: #D0D0D0;
+  margin: 10px;
+}
+
+#footer a:hover {
+  color: #df8931;
+}
