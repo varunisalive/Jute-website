@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('partials/meta') %>
+  </head>
+  <body>
+    <!-- NAVIGATION BAR -->
+      <section id="container">
+        <div class="container-fluid">
+
+          <nav class="navbar navbar-expand-lg fixed-top" id="custom-nav">
+            <a class="navbar-brand" href="/"><i class="fas fa-seedling fa-1x" style="margin-right: 10px"></i>  The Jute Project</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="nav navbar-nav ml-auto">
+
+                <li class="nav-item active">
+                  <a class="current-user nav-link" href="#"> @<%= currentUser.username %></a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Services
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Public Tender</a>
+                    <a class="dropdown-item" href="#">Private Tender</a>
+                    <a class="dropdown-item" href="#">Complaints</a>
+                    <a class="dropdown-item" href="#">Achievements</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About us</a>
+                </li>
+
+                <a class="btn btn-outline-light " href="/logout" role="button">Log Out</a>
+
+              </ul>
+            </div>
+          </nav>
+
+    </div>
+    </section>
+
+
+    <div class="container">
+      <h1 class="title">Input Form</h1>
+
+  <div class="card">
+      <div class="card-body">
+
+        <form class="" action="/userinfo" method="POST">
+          <div class="form-row">
+
+              <div class="form-group col-md-6">
+                <label class="label-register" for="username">UserID</label>
+                <input type="text" class="form-control" name="userID">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register" for="username">TenderID</label>
+                <input type="text" class="form-control" name="tenderID">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Tender Start Date</label>
+                <input type="date" class="form-control" name="tenderStartDate" placeholder="Enter Start Date">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Tender End Date</label>
+                <input type="date" class="form-control" name="tenderEndDate" placeholder="Enter End date">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Jute Types</label>
+                <input type="text" class="form-control" name="juteTypes" placeholder="Enter Jute Types">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Total Mill Workers</label>
+                <input type="text" class="form-control" name="totalMillWorkers" placeholder="Enter Total number of mill workers">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register" >No. of Workers Absent</label>
+                <input type="text" class="form-control" name="workersAbsent" placeholder="Enter number of workers absent">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Mill Workers wage/day</label>
+                <input type="text" class="form-control" name="millWorkersWage" placeholder="Enter Mill workers wage per day">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Total Jute Farmers</label>
+                <input type="text" class="form-control" name="totalJuteFarmers" placeholder="Enter Total number of Jute Farmers">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">No. of Farmers Absent</label>
+                <input type="text" class="form-control" name="farmersAbsent" placeholder="Enter number of farmers absent">
+              </div>
+              <div class="form-group col-md-6">
+                <label class="label-register">Jute Farmers wage/day</label>
+                <input type="text" class="form-control" name="farmerWage" placeholder="Enter Farmers wage per day">
+              </div>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+      </div>
+
+
+
+
+
+    </div>
+  </body>
+  <%- include('partials/footer') %>
+</html>

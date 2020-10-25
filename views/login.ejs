@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('partials/meta') %>
+  </head>
+  <body>
+
+    <%- include('partials/navbar') %>
+
+    <div class="container">
+      <h1 class="title">Login</h1>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+
+              <!-- Makes POST request to /login route -->
+              <form action="/login" method="POST">
+                <div class="form-group">
+                  <label class="label-register" for="username">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                  <label class="label-register" for="password">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn btn-outline-light">Login</button>
+                <a class="register-link" href="/register"> Haven't registered yet? Click Here.</a>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <a class="btn btn-block btn-google" href="/auth/google" role="button">
+                <i class="fab fa-google"></i>
+                Sign In with Google
+              </a>
+            </div>
+          </div>
+        </div> -->
+
+      </div>
+
+  </body>
+  <%- include('partials/footer') %>
+</html>
