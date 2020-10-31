@@ -96,7 +96,9 @@ passport.deserializeUser(function(id, done) {
 // HOME --> GET method
 
 app.get("/", function(req, res){
-  res.render("home");
+  res.render("home", {
+    currentUser: req.user
+  });
 });
 
 // GOOGLE OAUTH ROUTE (GET method)
@@ -114,7 +116,9 @@ app.get("/", function(req, res){
 // LOGIN ---> GET & POST method
 
 app.get("/login", function(req, res){
-  res.render("login");
+  res.render("login", {
+    currentUser: req.user
+  });
 });
 
 app.post("/login", function(req, res){
@@ -149,7 +153,9 @@ app.post("/login", function(req, res){
 // REGISTER ---> GET & POST method
 
 app.get("/register", function(req, res){
-  res.render("register");
+  res.render("register", {
+    currentUser: req.user
+  });
 });
 
 app.post("/register", function(req, res){

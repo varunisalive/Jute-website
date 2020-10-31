@@ -1,128 +1,167 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include('partials/meta') %>
-  </head>
-  <body>
-    <!-- NAVIGATION BAR -->
-      <section id="container">
-        <div class="container-fluid">
 
-          <nav class="navbar navbar-expand-lg fixed-top" id="custom-nav">
-            <a class="navbar-brand" href="/"><i class="fas fa-seedling fa-1x" style="margin-right: 10px"></i>  The Jute Project</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="nav navbar-nav ml-auto">
+<head>
+  <%- include('partials/meta') %>
+</head>
 
-                <li class="nav-item active">
-                  <a class="current-user nav-link" href="#"> @<%= currentUser.username %></a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Services
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Public Tender</a>
-                    <a class="dropdown-item" href="#">Private Tender</a>
-                    <a class="dropdown-item" href="#">Complaints</a>
-                    <a class="dropdown-item" href="#">Achievements</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contact us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">About us</a>
-                </li>
+<body>
 
-                <a class="btn btn-outline-light " href="/logout" role="button">Log Out</a>
+  <%- include('partials/navbar') %>
 
-              </ul>
-            </div>
-          </nav>
+  <div class="container">
+    <h1 class="title">Input Form</h1>
 
-    </div>
-    </section>
-
-
-    <div class="container">
-      <h1 class="title">Input Form</h1>
-
-  <div class="card">
+    <div class="card">
       <div class="card-body">
 
         <form class="" action="/userinfo" method="POST">
           <div class="form-row">
 
-              <div class="form-group col-md-6">
-                <label class="label-register" for="username">UserID</label>
-                <input type="text" class="form-control" name="userID">
+            <div class="form-group col-md-12">
+              <label class="label-register label-name" for="username">UserID</label>
+              <input type="text" class="form-control" name="userID">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Start Date</label>
+              <input type="date" class="form-control" name="startDate" placeholder="Enter Start Date">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">End Date</label>
+              <input type="date" class="form-control" name="endDate" placeholder="Enter End date">
+            </div>
+
+            <div class="form-group col-md-12">
+              <label class="label-register label-name">Jute Types</label>
+
+              <div class="card">
+                <div class="card-body">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="whiteJute" value="White Jute">
+                    <label class="form-check-label checkbox-item">White Jute</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tossaJute" value="Tossa Jute">
+                    <label class="form-check-label checkbox-item">Tossa Jute</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="mestaJute" value="Mesta Jute">
+                    <label class="form-check-label checkbox-item">Mesta Jute</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="juteCuttings" value="Jute Cuttings">
+                    <label class="form-check-label checkbox-item">Jute Cuttings</label>
+                  </div>
+                </div>
               </div>
-              <div class="form-group col-md-6">
-                <label class="label-register" for="username">TenderID</label>
-                <input type="text" class="form-control" name="tenderID">
+
+
+            </div>
+
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Area of Land Owned </label><i class="italic"> (in sq ft.)</i>
+              <input type="text" class="form-control" name="areaOfLandOwned" placeholder="Enter Total Area of land for cultivation">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Area of Land Used</label><i class="italic"> (in sq ft.)</i>
+              <input type="number" class="form-control" name="areaOfLandUsed" placeholder="Enter Total Area of land used for cultivation">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Labourers Hired </label> <i class="italic">(if any) - Optional</i>
+              <input type="number" class="form-control" name="labourersHired" placeholder="Enter total number of hired labourers">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Labourers wage per day </label>
+              <input type="number" class="form-control" name="labourersWage" placeholder="Enter Labourers wage per day">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Land Rent</label><i class="italic"> (if not owned by you) - Optional</i>
+              <input type="number" class="form-control" name="landRent" placeholder="Enter Land Rent">
+            </div>
+
+            <div class="form-group col-md-12">
+              <label class="label-register label-name">Expenses :</label>
+              <div class="card">
+                <div class="card-body">
+
+
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Godown Rent</label>
+                    <input type="number" class="form-control" name="godownRent" placeholder="Enter the Godown Rent">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Seeds Cost</label>
+                    <input type="number" class="form-control" name="seedsCost" placeholder="Enter the total cost of the seeds">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Plant Protection Chemical Cost</label>
+                    <input type="number" class="form-control" name="pptCost" placeholder="Enter the Plant Protection Chemical Cost">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">FYM (Farm Yard Manure) Cost</label>
+                    <input type="number" class="form-control" name="fymCost" placeholder="Enter the FYM Cost">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Fertilizers Cost</label>
+                    <input type="number" class="form-control" name="fertilizersCost" placeholder="Enter the Feritilizers Cost">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Ploughing Cost</label><i class="italic"> (ex: Feeding Oxes, Equipments, etc)</i>
+                    <input type="number" class="form-control" name="ploughingCost" placeholder="Enter the total Ploughing Cost">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Irrigation Cost</label>
+                    <input type="number" class="form-control" name="irrigationCost" placeholder="Enter the Irrigation Cost">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Harvesting Cost</label><i class="italic"> (ex: Tractor Fuel, Equipments, etc)</i>
+                    <input type="number" class="form-control" name="harvestingCost" placeholder="Enter the total Harvesting Cost">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Transport Cost</label>
+                    <input type="number" class="form-control" name="transportCost" placeholder="Enter the Transport Cost">
+                  </div>
+
+
+
+                </div>
               </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Tender Start Date</label>
-                <input type="date" class="form-control" name="tenderStartDate" placeholder="Enter Start Date">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Tender End Date</label>
-                <input type="date" class="form-control" name="tenderEndDate" placeholder="Enter End date">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Jute Types</label>
-                <input type="text" class="form-control" name="juteTypes" placeholder="Enter Jute Types">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Total Mill Workers</label>
-                <input type="text" class="form-control" name="totalMillWorkers" placeholder="Enter Total number of mill workers">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register" >No. of Workers Absent</label>
-                <input type="text" class="form-control" name="workersAbsent" placeholder="Enter number of workers absent">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Mill Workers wage/day</label>
-                <input type="text" class="form-control" name="millWorkersWage" placeholder="Enter Mill workers wage per day">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Total Jute Farmers</label>
-                <input type="text" class="form-control" name="totalJuteFarmers" placeholder="Enter Total number of Jute Farmers">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">No. of Farmers Absent</label>
-                <input type="text" class="form-control" name="farmersAbsent" placeholder="Enter number of farmers absent">
-              </div>
-              <div class="form-group col-md-6">
-                <label class="label-register">Jute Farmers wage/day</label>
-                <input type="text" class="form-control" name="farmerWage" placeholder="Enter Farmers wage per day">
-              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Cost per unit</label>
+              <input type="number" class="form-control" name="crops" placeholder="Enter Cost per unit ">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Profit Margin per unit</label><i class="italic"></i>
+              <input type="number" class="form-control" name="landRent" placeholder="Enter Profit Margin per Unit">
+            </div>
+            <div class="form-group col-md-12">
+              <label class="label-register label-name">Total Sales</label><i class="italic"></i>
+              <input type="number" class="form-control" name="totalSales" placeholder="Enter Total Sales">
+            </div>
+
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-lg btn-calculate btn-light">Calculate Profits Earned</button>
+            </div>
+
         </form>
 
-
-
-
-
-
-
-
-
-
-
-          </div>
-        </div>
       </div>
-
-      </div>
-
-
-
 
 
     </div>
-  </body>
-  <%- include('partials/footer') %>
+  </div>
+
+  </div>
+
+
+
+
+
+  </div>
+</body>
+<%- include('partials/footer') %>
+
 </html>
