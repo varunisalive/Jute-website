@@ -15,12 +15,12 @@
     <div class="card">
       <div class="card-body">
 
-        <form class="" action="/userinfo" method="POST">
+        <form class="" action="/main" method="POST">
           <div class="form-row">
 
             <div class="form-group col-md-12">
-              <label class="label-register label-name" for="username">UserID</label>
-              <input type="text" class="form-control" name="userID">
+              <label class="label-register label-name" for="username">Form Title</label><i class="italic"> (a random name of your choosing)</i>
+              <input type="text" class="form-control" name="formTitle">
             </div>
             <div class="form-group col-md-6">
               <label class="label-register label-name">Start Date</label>
@@ -37,19 +37,19 @@
               <div class="card">
                 <div class="card-body">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="whiteJute" value="White Jute">
+                    <input class="form-check-input" type="checkbox" name="whiteJute" value="True">
                     <label class="form-check-label checkbox-item">White Jute</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="tossaJute" value="Tossa Jute">
+                    <input class="form-check-input" type="checkbox" name="tossaJute" value="True">
                     <label class="form-check-label checkbox-item">Tossa Jute</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="mestaJute" value="Mesta Jute">
+                    <input class="form-check-input" type="checkbox" name="mestaJute" value="True">
                     <label class="form-check-label checkbox-item">Mesta Jute</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="juteCuttings" value="Jute Cuttings">
+                    <input class="form-check-input" type="checkbox" name="juteCuttings" value="True">
                     <label class="form-check-label checkbox-item">Jute Cuttings</label>
                   </div>
                 </div>
@@ -60,7 +60,7 @@
 
             <div class="form-group col-md-6">
               <label class="label-register label-name">Area of Land Owned </label><i class="italic"> (in sq ft.)</i>
-              <input type="text" class="form-control" name="areaOfLandOwned" placeholder="Enter Total Area of land for cultivation">
+              <input type="number" class="form-control" name="areaOfLandOwned" placeholder="Enter Total Area of land for cultivation">
             </div>
             <div class="form-group col-md-6">
               <label class="label-register label-name">Area of Land Used</label><i class="italic"> (in sq ft.)</i>
@@ -75,8 +75,8 @@
               <input type="number" class="form-control" name="labourersWage" placeholder="Enter Labourers wage per day">
             </div>
             <div class="form-group col-md-6">
-              <label class="label-register label-name">Land Rent</label><i class="italic"> (if not owned by you) - Optional</i>
-              <input type="number" class="form-control" name="landRent" placeholder="Enter Land Rent">
+              <label class="label-register label-name">Farm Land Rent</label><i class="italic"> (if not owned by you) - Optional</i>
+              <input type="number" class="form-control" name="farmLandRent" placeholder="Enter Land Rent">
             </div>
 
             <div class="form-group col-md-12">
@@ -143,7 +143,7 @@
 
 
             <div class="text-center">
-              <button type="submit" class="btn btn-lg btn-calculate btn-light">Calculate Profits Earned</button>
+              <button type="submit" class="btn btn-home btn-lg btn-calculate btn-light">Calculate Profits Earned</button>
             </div>
 
         </form>
@@ -153,14 +153,10 @@
 
     </div>
   </div>
-
   </div>
-
-
-
-
-
   </div>
+  <%- include ('partials/jquery') %>
+
 </body>
 <%- include('partials/footer') %>
 

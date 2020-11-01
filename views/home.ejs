@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <%- include('partials/meta') %>
-  
 </head>
 <body>
 
@@ -12,19 +11,19 @@
   <section id="description">
     <div class="info container-fluid">
 
-      <h2>Jute Cycle</h2>
-      <p class="desc">
+      <h2 data-aos="fade-down" data-aos-delay="500">Jute Cycle</h2>
+      <p class="desc" data-aos="fade-down" data-aos-delay="700">
         This is a webpage portal for the Assessment of income generation of jute farmers and workers in the jute
         sectors.
       </p>
       <!-- LOGIN & SIGN UP -->
-      <a type="submit" href="/register" class="btn btn-lg btn-outline-light" name="button"><i class="fas fa-user-plus"></i> Sign Up</a>
-      <a type="submit" href="/login" class="btn btn-lg btn-outline-light" name="button"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a type="submit" href="/register" class="btn btn-home btn-lg btn-outline-light" name="button" data-aos="zoom-in" data-aos-delay="800"><i class="fas fa-user-plus"></i> Sign Up</a>
+      <a type="submit" href="/login" class="btn btn-home btn-lg btn-outline-light" name="button" data-aos="zoom-in" data-aos-delay="800"><i class="fas fa-sign-in-alt"></i> Login</a>
 
     </div>
 
   </section>
-
+  <%- include ('partials/jquery') %>
 </body>
 
 <%- include('partials/footer') %>

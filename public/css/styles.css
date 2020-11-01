@@ -42,7 +42,7 @@ nav a:hover {
 }
 
 .navbar {
-  height: 65px;
+  height: 68px;
   background-color: #000000;
   box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.8);
 }
@@ -77,11 +77,13 @@ nav a:hover {
 
 /* Login and download button  */
 
-.btn {
+
+
+.btn-home {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
   padding: 10px;
-  margin-left: 5px;
+  margin: 5px;
 }
 
 /* Description */
@@ -155,7 +157,7 @@ nav a:hover {
 }
 
 .register-link {
-
+  margin-left: 5px;
   color: #D3D3D3;
 }
 
@@ -207,5 +209,5 @@ nav a:hover {
 }
 
 .btn-calculate {
-  margin: 10px 
+  margin: 10px
 }

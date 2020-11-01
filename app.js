@@ -41,6 +41,93 @@ app.use(passport.session());
 mongoose.connect("mongodb://localhost:27017/usersDB", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
+const formSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
+  formTitle: {type: String},
+  startDate: {type: Date},
+  endDate: {type: Date},
+  juteTypes: {
+    whiteJute: {type: String},
+    tossaJute: {type: String},
+    mestaJute: {type: String},
+    juteCuttings: {type: String}
+  },
+  areaOfLandOwned: {
+    type: Number,
+    description: "sq ft."
+  },
+  areaOfLandUsed: {
+    type: Number,
+    description: "sq ft."
+  },
+  labourersHired: {type: Number},
+  labourersWagePerDay: {
+    type: Number,
+    description: "Rupees"
+  },
+  farmLandRent: {
+    type: Number,
+    description: "Rupees"
+  },
+  Expenses: {
+    godownCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    seedsCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    plantProtectionChemicalCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    farmYardManureCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    FertilizersCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    ploughingCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    irrigationCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    harvestingCost: {
+      type: Number,
+      description: "Rupees"
+    },
+    transportCost: {
+      type: Number,
+      description: "Rupees"
+    }
+  },
+  costPerUnit: {
+    type: Number,
+    description: "Rupees"
+  },
+  profitMarginPerUnit: {
+    type: Number,
+    description: "Rupees"
+  },
+  totalSales: {
+    type: Number,
+    description: "Rupees"
+  },
+  totalProfit: {
+    type: Number,
+    description: "Rupees"
+  }
+});
+
 const userSchema = new mongoose.Schema({
   userInfo: {
     fullName: String
@@ -55,13 +142,16 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String
-  }
+  },
+  forms: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
 });
+
 
 userSchema.plugin(passportLocalMongoose);
 // userSchema.plugin(findOrCreate);
 userSchema.plugin(uniqueValidator, {message: 'is already taken.'});
 
+const Form = new mongoose.model("Form", formSchema);
 const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
@@ -207,7 +297,7 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 })
 
-// MAIN PAGE ---> GET method
+// MAIN PAGE ---> GET & POST method
 
 app.get("/main", function(req, res){
   if(req.isAuthenticated()){
@@ -219,7 +309,102 @@ app.get("/main", function(req, res){
   }
 });
 
+app.post("/main", function(req, res){
 
+  // user_id
+  const user = req.user.id;
+  // form_info
+  const formTitle = req.body.formTitle;
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
+  // Jute types
+  const whiteJute = req.body.whiteJute;
+  const tossaJute = req.body.tossaJute;
+  const mestaJute = req.body.mestaJute;
+  const juteCuttings = req.body.juteCuttings;
+  // Area & expenses
+  const areaOfLandOwned = req.body.areaOfLandOwned;
+  const areaOfLandUsed = req.body.areaOfLandUsed;
+  const labourersHired = req.body.labourersHired;
+  const labourersWagePerDay = req.body.labourersWagePerDay;
+  const farmLandRent = req.body.farmLandRent;
+  // More Expenses
+  const godownCost = req.body.godownCost;
+  const seedsCost = req.body.seedsCost;
+  const plantProtectionChemicalCost = req.body.pptCost;
+  const farmYardManureCost = req.body.fymCost;
+  const fertilizersCost = req.body.fertilizersCost;
+  const ploughingCost = req.body.ploughingCost;
+  const irrigationCost = req.body.irrigationCost;
+  const harvestingCost = req.body.harvestingCost;
+  const transportCost = req.body.transportCost;
+  //Sales
+  const costPerUnit = req.body.costPerUnit;
+  const profitMarginPerUnit = req.body.profitMarginPerUnit;
+  const totalSales = req.body.totalSales;
+
+
+
+  Form.insertMany([{
+    user: user,
+    formTitle: formTitle,
+    startDate: startDate,
+    endDate: endDate,
+    juteTypes: {
+      whiteJute: whiteJute,
+      tossaJute: tossaJute,
+      mestaJute: mestaJute,
+      juteCuttings: juteCuttings
+    },
+    areaOfLandOwned: areaOfLandOwned,
+    areaOfLandUsed: areaOfLandUsed,
+    labourersHired: labourersHired,
+    labourersWagePerDay: labourersWagePerDay,
+    farmLandRent: farmLandRent,
+    Expenses: {
+      godownCost: godownCost,
+      seedsCost: seedsCost,
+      plantProtectionChemicalCost: plantProtectionChemicalCost,
+      farmYardManureCost: farmYardManureCost,
+      fertilizersCost: fertilizersCost,
+      ploughingCost: ploughingCost,
+      irrigationCost: irrigationCost,
+      harvestingCost: harvestingCost,
+      transportCost: transportCost
+    },
+    costPerUnit: costPerUnit,
+    profitMarginPerUnit: profitMarginPerUnit,
+    totalSales: totalSales,
+    // totalProfit: req.body.formTitle
+}], function(err, result){
+    if(err){
+      console.log(err);
+    } else {
+      res.redirect("/main");
+    }
+  });
+});
+
+// Profile ---> GET Method
+
+app.get("/profile/:userID", function(req, res){
+
+  const requestedUserID = req.params.userID;
+  console.log(requestedUserID);
+
+  Form.find({_id: requestedUserID}, function(err, foundForms){
+    if(err){
+      console.log(err);
+    } else {
+      if(foundForms){
+        res.render("profile", {
+          currentUser: req.user,
+          userForms: foundForms
+        });
+      }
+    }
+  });
+});
 
 app.listen(3000, function(req, res){
   console.log("The server is ready at port 3000");
