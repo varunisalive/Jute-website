@@ -211,3 +211,27 @@ nav a:hover {
 .btn-calculate {
   margin: 10px
 }
+
+ /* Form output display */
+
+.card-css {
+  margin-bottom: 10px;
+}
+
+h4, th, td {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
+h4 {
+  margin-top: 100px;
+  font-weight: bold;
+}
+
+th {
+
+}
+
+td {
+
+}

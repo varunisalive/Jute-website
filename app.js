@@ -331,16 +331,16 @@ app.post("/main", function(req, res){
   // More Expenses
   const godownCost = req.body.godownCost;
   const seedsCost = req.body.seedsCost;
-  const plantProtectionChemicalCost = req.body.pptCost;
+  const plantProtectionChemicalCost = req.body.ppcCost;
   const farmYardManureCost = req.body.fymCost;
-  const fertilizersCost = req.body.fertilizersCost;
+  const fertilizersCost = req.body.fertilizerCost;
   const ploughingCost = req.body.ploughingCost;
   const irrigationCost = req.body.irrigationCost;
   const harvestingCost = req.body.harvestingCost;
   const transportCost = req.body.transportCost;
   //Sales
-  const costPerUnit = req.body.costPerUnit;
-  const profitMarginPerUnit = req.body.profitMarginPerUnit;
+  const costPerUnit = req.body.cost;
+  const profitMarginPerUnit = req.body.profitMargin;
   const totalSales = req.body.totalSales;
 
 
@@ -372,6 +372,7 @@ app.post("/main", function(req, res){
       harvestingCost: harvestingCost,
       transportCost: transportCost
     },
+
     costPerUnit: costPerUnit,
     profitMarginPerUnit: profitMarginPerUnit,
     totalSales: totalSales,
@@ -390,16 +391,15 @@ app.post("/main", function(req, res){
 app.get("/profile/:userID", function(req, res){
 
   const requestedUserID = req.params.userID;
-  console.log(requestedUserID);
 
-  Form.find({_id: requestedUserID}, function(err, foundForms){
+  Form.find({user: requestedUserID}, function(err, foundForms){
     if(err){
       console.log(err);
     } else {
       if(foundForms){
         res.render("profile", {
-          currentUser: req.user,
-          userForms: foundForms
+          userForms: foundForms,
+          currentUser: req.user
         });
       }
     }

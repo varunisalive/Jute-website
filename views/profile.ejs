@@ -5,6 +5,122 @@
   </head>
   <body>
     <%- include('partials/navbar') %>
+
+<div class="container">
+
+  <% userForms.forEach(function(user){ %>
+    <h4>Form Title : <%= user.formTitle %></h4>
+    <div class="card card-css">
+      <div class="card-body">
+        <table class="table">
+          <tr>
+            <th>Fields</th>
+            <th>Value</th>
+            <th>Units</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>Start Date</td>
+              <td><%= user.startDate %></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>End Date</td>
+              <td><%= user.endDate %></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Area of Land Owned</td>
+              <td><%= user.areaOfLandOwned %></td>
+              <td>sq ft.</td>
+            </tr>
+            <tr>
+              <td>Area of Land Used</td>
+              <td><%= user.areaOfLandUsed %></td>
+              <td>sq ft.</td>
+            </tr>
+            <tr>
+              <td>Labourers Hired</td>
+              <td><%= user.labourersHired %></td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td>Land Rent</td>
+              <td><%= user.farmLandRent %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Seeds Cost</td>
+              <td><%= user.Expenses.seedsCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Plant Protection Chemical Cost</td>
+              <td><%= user.Expenses.pptCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Farm Yard Manure(FYM) Cost</td>
+              <td><%= user.Expenses.farmYardManureCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Fertilizers Cost</td>
+              <td><%= user.Expenses.fertilizersCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Ploughing Cost</td>
+              <td><%= user.Expenses.ploughingCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Irrigation Cost</td>
+              <td><%= user.Expenses.irrigationCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Harvesting Cost</td>
+              <td><%= user.Expenses.harvestingCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Transport Cost</td>
+              <td><%= user.Expenses.transportCost %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Cost Per Unit</td>
+              <td><%= user.costPerUnit %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Profit Margin Per Unit</td>
+              <td><%= user.profitMarginPerUnit %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Total Sales</td>
+              <td><%= user.totalSales %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+
+              <tr>
+                <th>Gross Profit</th>
+                <th><%= user.grossProfit %></th>
+                <th>(₹)Rupees</th>
+              </tr>
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% }); %>
+</div>
+
+
     <%- include ('partials/jquery') %>
   </body>
 </html>
