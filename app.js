@@ -56,75 +56,64 @@ const formSchema = new mongoose.Schema({
     juteCuttings: {type: String}
   },
   areaOfLandOwned: {
-    type: Number,
-    description: "sq ft."
+    type: Number
   },
   areaOfLandUsed: {
-    type: Number,
-    description: "sq ft."
+    type: Number
   },
   labourersHired: {type: Number},
   labourersWagePerDay: {
-    type: Number,
-    description: "Rupees"
+    type: Number
   },
   farmLandRent: {
-    type: Number,
-    description: "Rupees"
+    type: Number
   },
   Expenses: {
-    godownCost: {
-      type: Number,
-      description: "Rupees"
+    godownRent: {
+      type: Number
     },
     seedsCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     },
     plantProtectionChemicalCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     },
     farmYardManureCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     },
-    FertilizersCost: {
-      type: Number,
-      description: "Rupees"
+    fertilizersCost: {
+      type: Number
     },
     ploughingCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     },
     irrigationCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     },
     harvestingCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     },
     transportCost: {
-      type: Number,
-      description: "Rupees"
+      type: Number
     }
   },
-  costPerUnit: {
-    type: Number,
-    description: "Rupees"
+  sellingPricePerUnit: {
+    type: Number
   },
-  profitMarginPerUnit: {
-    type: Number,
-    description: "Rupees"
+  discounts: {
+    type: Number
+  },
+  totalUnitsProduced: {
+    type: Number
+  },
+  totalUnitsSold: {
+    type: Number
   },
   totalSales: {
-    type: Number,
-    description: "Rupees"
+    type: Number
   },
-  totalProfit: {
-    type: Number,
-    description: "Rupees"
+  netIncome: {
+    type: Number
   }
 });
 
@@ -329,7 +318,7 @@ app.post("/main", function(req, res){
   const labourersWagePerDay = req.body.labourersWagePerDay;
   const farmLandRent = req.body.farmLandRent;
   // More Expenses
-  const godownCost = req.body.godownCost;
+  const godownRent = req.body.godownRent;
   const seedsCost = req.body.seedsCost;
   const plantProtectionChemicalCost = req.body.ppcCost;
   const farmYardManureCost = req.body.fymCost;
@@ -339,9 +328,28 @@ app.post("/main", function(req, res){
   const harvestingCost = req.body.harvestingCost;
   const transportCost = req.body.transportCost;
   //Sales
-  const costPerUnit = req.body.cost;
-  const profitMarginPerUnit = req.body.profitMargin;
+  const sellingPricePerUnit = req.body.sellingPricePerUnit;
+  const discounts = req.body.discounts;
+  const totalUnitsProduced = req.body.totalUnitsProduced;
+  const totalUnitsSold = req.body.totalUnitsSold;
   const totalSales = req.body.totalSales;
+
+  //Calculate number of days
+  function days(startDate, endDate){
+    var date1 = new Date(startDate);
+    var date2 = new Date(endDate);
+    return (date2-date1)/(1000*3600*24);
+  }
+
+  //Total wage of Labourers from *Date1* to *Date2*
+  var labourersTotalWage = parseFloat(labourersWagePerDay) * days(startDate, endDate);
+  //Total expense of hiring the labourers
+  var totalLabourersExpense = parseFloat(labourersHired) * labourersTotalWage;
+  //Rest of the expenses
+  var expenses = parseFloat(godownRent) + parseFloat(seedsCost) + parseFloat(plantProtectionChemicalCost) + parseFloat(farmYardManureCost) + parseFloat(fertilizersCost) + parseFloat(ploughingCost) + parseFloat(irrigationCost) + parseFloat(harvestingCost) + parseFloat(transportCost) + parseFloat(farmLandRent) + parseFloat(discounts);
+
+
+
 
 
 
@@ -362,7 +370,7 @@ app.post("/main", function(req, res){
     labourersWagePerDay: labourersWagePerDay,
     farmLandRent: farmLandRent,
     Expenses: {
-      godownCost: godownCost,
+      godownRent: godownRent,
       seedsCost: seedsCost,
       plantProtectionChemicalCost: plantProtectionChemicalCost,
       farmYardManureCost: farmYardManureCost,
@@ -373,10 +381,12 @@ app.post("/main", function(req, res){
       transportCost: transportCost
     },
 
-    costPerUnit: costPerUnit,
-    profitMarginPerUnit: profitMarginPerUnit,
+    sellingPricePerUnit: sellingPricePerUnit,
+    discounts: discounts,
+    totalUnitsProduced: totalUnitsProduced,
+    totalUnitsSold: totalUnitsSold,
     totalSales: totalSales,
-    // totalProfit: req.body.formTitle
+    // netIncome: req.body.formTitle
 }], function(err, result){
     if(err){
       console.log(err);

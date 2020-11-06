@@ -37,19 +37,19 @@
               <div class="card">
                 <div class="card-body">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="whiteJute" value="True">
+                    <input class="form-check-input" type="checkbox" name="whiteJute" value="White Jute">
                     <label class="form-check-label checkbox-item">White Jute</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="tossaJute" value="True">
+                    <input class="form-check-input" type="checkbox" name="tossaJute" value="Tossa Jute">
                     <label class="form-check-label checkbox-item">Tossa Jute</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="mestaJute" value="True">
+                    <input class="form-check-input" type="checkbox" name="mestaJute" value="Mesta Jute">
                     <label class="form-check-label checkbox-item">Mesta Jute</label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="juteCuttings" value="True">
+                    <input class="form-check-input" type="checkbox" name="juteCuttings" value="Jute Cuttings">
                     <label class="form-check-label checkbox-item">Jute Cuttings</label>
                   </div>
                 </div>
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group col-md-6">
               <label class="label-register label-name">Labourers wage per day </label>
-              <input type="number" class="form-control" name="labourersWage" placeholder="Enter Labourers wage per day">
+              <input type="number" class="form-control" name="labourersWagePerDay" placeholder="Enter Labourers wage per day">
             </div>
             <div class="form-group col-md-6">
               <label class="label-register label-name">Farm Land Rent</label><i class="italic"> (if not owned by you) - Optional</i>
@@ -129,12 +129,20 @@
             </div>
 
             <div class="form-group col-md-6">
-              <label class="label-register label-name">Cost per unit </label>
-              <input type="number" class="form-control" name="cost" placeholder="Enter Cost per unit ">
+              <label class="label-register label-name">Selling Price per unit </label>
+              <input type="number" class="form-control" name="sellingPricePerUnit" placeholder="Enter Cost per unit ">
             </div>
             <div class="form-group col-md-6">
-              <label class="label-register label-name">Profit Margin per unit </label><i class="italic"></i>
-              <input type="number" class="form-control" name="profitMargin" placeholder="Enter Profit Margin per Unit">
+              <label class="label-register label-name">Discounts</label><i class="italic"> - Optional</i>
+              <input type="number" class="form-control" name="discounts" placeholder="Enter discounts (if any) ">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Total Units Produced </label><i class="italic"></i>
+              <input type="number" class="form-control" name="totalUnitsProduced" placeholder="Enter Total units Produced">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="label-register label-name">Total Units Sold </label><i class="italic"></i>
+              <input type="number" class="form-control" name="totalUnitsSold" placeholder="Enter Total units sold">
             </div>
             <div class="form-group col-md-12">
               <label class="label-register label-name">Total Sales</label><i class="italic"></i>

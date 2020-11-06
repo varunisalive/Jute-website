@@ -30,6 +30,11 @@
               <td>-</td>
             </tr>
             <tr>
+              <td>Types of Jute Used</td>
+              <td><%= user.juteTypes.whiteJute %><br><%= user.juteTypes.tossaJute %><br><%= user.juteTypes.mestaJute %><br><%= user.juteTypes.juteCuttings %></td>
+              <td>-</td>
+            </tr>
+            <tr>
               <td>Area of Land Owned</td>
               <td><%= user.areaOfLandOwned %></td>
               <td>sq ft.</td>
@@ -45,8 +50,18 @@
               <td>-</td>
             </tr>
             <tr>
+              <td>Labourers Wage per Day</td>
+              <td><%= user.labourersWagePerDay %></td>
+              <td>-</td>
+            </tr>
+            <tr>
               <td>Land Rent</td>
               <td><%= user.farmLandRent %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Godwon Rent</td>
+              <td><%= user.Expenses.godownRent %></td>
               <td>(₹)Rupees</td>
             </tr>
             <tr>
@@ -56,7 +71,7 @@
             </tr>
             <tr>
               <td>Plant Protection Chemical Cost</td>
-              <td><%= user.Expenses.pptCost %></td>
+              <td><%= user.Expenses.plantProtectionChemicalCost %></td>
               <td>(₹)Rupees</td>
             </tr>
             <tr>
@@ -90,13 +105,23 @@
               <td>(₹)Rupees</td>
             </tr>
             <tr>
-              <td>Cost Per Unit</td>
-              <td><%= user.costPerUnit %></td>
+              <td>Selling Price per Unit</td>
+              <td><%= user.sellingPricePerUnit %></td>
               <td>(₹)Rupees</td>
             </tr>
             <tr>
-              <td>Profit Margin Per Unit</td>
-              <td><%= user.profitMarginPerUnit %></td>
+              <td>Discounts</td>
+              <td><%= user.discounts %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Total Units Produced</td>
+              <td><%= user.totalUnitsProduced %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
+              <td>Total Units Sold</td>
+              <td><%= user.totalUnitsSold %></td>
               <td>(₹)Rupees</td>
             </tr>
             <tr>
@@ -106,8 +131,8 @@
             </tr>
 
               <tr>
-                <th>Gross Profit</th>
-                <th><%= user.grossProfit %></th>
+                <th>Net Income</th>
+                <th><%= user.netIncome %></th>
                 <th>(₹)Rupees</th>
               </tr>
 
