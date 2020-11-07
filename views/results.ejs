@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <%- include('partials/header') %>
+
+
+  <div class="container">
+    <div class="jumbotron">
+      <% userForm.forEach(function(user){ %>
+      <h1 class="display-4">Your Net Income is :<br>₹ <%= user.netIncome %></h1>
+      <p class="h5">The Expected Net Income based on Selling Price per Unit is : ₹<%=user.expectedNetIncome%></p>
+
+
+      <% if (user.leftoverUnits == 0){ %>
+        <p class="res-para">You don't have any leftover units waiting to be sold.</p>
+      <% } else if (user.leftoverUnits != null){ %>
+        <p class="res-para">You still have <%=user.leftoverUnits%> unit / units (1kg. each) left. You can earn ₹<%= user.leftoverUnitsPrice%> more.</p>
+      <% } %>
+
+      <hr class="my-4">
+      <h5>HSN Code</h5>
+      <p class="res-para">Chapter / Heading / Sub-heading / Tariff item: 5303 <br>
+        GST Tax Rate: Exempted <br>
+        Description: Jute fibres, raw or processed but not spun</p>
+
+      <% if(currentUser) { %>
+        <p class="lead">
+          <a class="btn btn-primary " href="/profile/<%= currentUser.id %>" role="button">Check Your Forms here</a>
+        </p>
+      <% } %>
+
+      <% }); %>
+    </div>
+  </div>
+
+
+  <%- include('partials/footer') %>
+
+</html>

@@ -46,75 +46,40 @@ const formSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-  formTitle: {type: String},
-  startDate: {type: Date},
-  endDate: {type: Date},
+  formTitle: {type: String, unique: true},
+  startDate: {type: Date, required: true},
+  endDate: {type: Date, required: true},
   juteTypes: {
     whiteJute: {type: String},
     tossaJute: {type: String},
     mestaJute: {type: String},
     juteCuttings: {type: String}
   },
-  areaOfLandOwned: {
-    type: Number
-  },
-  areaOfLandUsed: {
-    type: Number
-  },
+  areaOfLandOwned: {type: Number},
+  areaOfLandUsed: {type: Number},
   labourersHired: {type: Number},
-  labourersWagePerDay: {
-    type: Number
-  },
-  farmLandRent: {
-    type: Number
-  },
+  labourersWagePerDay: {type: Number},
+  farmLandRent: {type: Number},
   Expenses: {
-    godownRent: {
-      type: Number
-    },
-    seedsCost: {
-      type: Number
-    },
-    plantProtectionChemicalCost: {
-      type: Number
-    },
-    farmYardManureCost: {
-      type: Number
-    },
-    fertilizersCost: {
-      type: Number
-    },
-    ploughingCost: {
-      type: Number
-    },
-    irrigationCost: {
-      type: Number
-    },
-    harvestingCost: {
-      type: Number
-    },
-    transportCost: {
-      type: Number
-    }
+    godownRent: {type: Number},
+    seedsCost: {type: Number},
+    plantProtectionChemicalCost: {type: Number},
+    farmYardManureCost: {type: Number},
+    fertilizersCost: {type: Number},
+    ploughingCost: {type: Number},
+    irrigationCost: {type: Number},
+    harvestingCost: {type: Number},
+    transportCost: {type: Number}
   },
-  sellingPricePerUnit: {
-    type: Number
-  },
-  discounts: {
-    type: Number
-  },
-  totalUnitsProduced: {
-    type: Number
-  },
-  totalUnitsSold: {
-    type: Number
-  },
-  totalSales: {
-    type: Number
-  },
-  netIncome: {
-    type: Number
-  }
+  sellingPricePerUnit: {type: Number},
+  discounts: {type: Number},
+  totalUnitsProduced: {type: Number},
+  totalUnitsSold: {type: Number},
+  leftoverUnits: {type: Number},
+  leftoverUnitsPrice: {type: Number},
+  totalSales: {type: Number},
+  expectedNetIncome: {type: Number},
+  netIncome: {type: Number}
 });
 
 const userSchema = new mongoose.Schema({
@@ -210,6 +175,13 @@ app.post("/login", function(req, res){
       message: "Please insert the required information to login."
     }
     res.redirect("/login");
+  } else {
+
+    req.session.message = {
+      type: "success",
+      intro: "You have been logged in successfully!",
+      message: ""
+    }
   }
 
   const user = new User({
@@ -252,7 +224,7 @@ app.post("/register", function(req, res){
     req.session.message = {
       type: "success",
       intro: "You have been registered successfully!",
-      message: "login to enter."
+      message: ""
     }
   }
 
@@ -272,7 +244,7 @@ app.post("/register", function(req, res){
       res.redirect("/register");
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/login");
+        res.redirect("/main");
       });
 
     }
@@ -343,14 +315,28 @@ app.post("/main", function(req, res){
 
   //Total wage of Labourers from *Date1* to *Date2*
   var labourersTotalWage = parseFloat(labourersWagePerDay) * days(startDate, endDate);
+
   //Total expense of hiring the labourers
   var totalLabourersExpense = parseFloat(labourersHired) * labourersTotalWage;
+
   //Rest of the expenses
-  var expenses = parseFloat(godownRent) + parseFloat(seedsCost) + parseFloat(plantProtectionChemicalCost) + parseFloat(farmYardManureCost) + parseFloat(fertilizersCost) + parseFloat(ploughingCost) + parseFloat(irrigationCost) + parseFloat(harvestingCost) + parseFloat(transportCost) + parseFloat(farmLandRent) + parseFloat(discounts);
+  var expenses = parseFloat(farmLandRent) + parseFloat(godownRent) + parseFloat(seedsCost) + parseFloat(plantProtectionChemicalCost) + parseFloat(farmYardManureCost) + parseFloat(fertilizersCost) + parseFloat(ploughingCost) + parseFloat(irrigationCost) + parseFloat(harvestingCost) + parseFloat(transportCost) + parseFloat(farmLandRent) + parseFloat(discounts);
 
+  //Total Expenses
+  var totalExpenses = totalLabourersExpense + expenses;
 
+  //Total Sales based on Selling Price Per unit
+  var expectedSales = parseFloat(sellingPricePerUnit) * parseFloat(totalUnitsSold);
 
+  //Leftover units of jute
+  var leftoverUnits = parseFloat(totalUnitsProduced) - parseFloat(totalUnitsSold);
+  var leftoverUnitsPrice = parseFloat(sellingPricePerUnit) * leftoverUnits;
 
+  //The Net Income based on Selling Price per unit
+  var expectedNetIncome = expectedSales - totalExpenses;
+
+  //The actual Net Income
+  var netIncome = parseFloat(totalSales) - totalExpenses;
 
 
   Form.insertMany([{
@@ -386,12 +372,32 @@ app.post("/main", function(req, res){
     totalUnitsProduced: totalUnitsProduced,
     totalUnitsSold: totalUnitsSold,
     totalSales: totalSales,
-    // netIncome: req.body.formTitle
+    leftoverUnits: leftoverUnits,
+    leftoverUnitsPrice: leftoverUnitsPrice,
+    expectedNetIncome: expectedNetIncome,
+    netIncome: netIncome
 }], function(err, result){
     if(err){
       console.log(err);
     } else {
-      res.redirect("/main");
+      res.redirect("/results");
+    }
+  });
+});
+
+//Result of the form
+app.get("/results", function(req, res){
+
+  Form.find().sort({ _id: -1 }).limit(1).exec(function(err, post){
+    if(err) {
+      console.log(err);
+    } else {
+      if(post){
+        res.render("results", {
+          currentUser: req.user,
+          userForm: post
+        });
+      }
     }
   });
 });
@@ -402,7 +408,7 @@ app.get("/profile/:userID", function(req, res){
 
   const requestedUserID = req.params.userID;
 
-  Form.find({user: requestedUserID}, function(err, foundForms){
+  Form.find({user: requestedUserID}).sort({ _id: -1 }).exec(function(err, foundForms){
     if(err){
       console.log(err);
     } else {

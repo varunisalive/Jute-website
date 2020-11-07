@@ -12,6 +12,11 @@ body{
     background-size: cover;
 }
 
+p {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
 h1, h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
@@ -45,6 +50,7 @@ nav a:hover {
   height: 68px;
   background-color: #000000;
   box-shadow: 0px 1px 20px rgba(0, 0, 0, 0.8);
+
 }
 
 .navbar-nav{
@@ -52,6 +58,11 @@ nav a:hover {
   font-weight: normal;
   text-align: center;
   color: #ffffff;
+}
+
+/* session message */
+.close:focus {
+  outline: none;
 }
 
 /* -----------main.ejs & navbar --------- */
@@ -71,8 +82,8 @@ nav a:hover {
   padding: 0px 5px;
 }
 
-.dropdown-menu{
-  background-color: #dbcbbd;
+.dropdown-menu {
+  background: #D3D3D3;
 }
 
 /* Login and download button  */
@@ -83,7 +94,7 @@ nav a:hover {
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
   padding: 10px;
-  margin: 5px;
+  margin: 15px 5px 5px;
 }
 
 /* Description */
@@ -96,7 +107,7 @@ nav a:hover {
 
 
 #description {
-  padding: 200px 50px 120px 50px;
+  padding: 210px 50px 50px 50px;
 }
 
 .info{
@@ -121,7 +132,7 @@ nav a:hover {
   font-family: "Montserrat";
   font-weight: normal;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 120px;
   letter-spacing: 1px;
   color: #D0D0D0;
 }
@@ -167,10 +178,10 @@ nav a:hover {
 }
 
 .alert {
- border-radius: 0;
- margin-top: 65px;
- border-radius: 0;
- margin-bottom: 0;
+  border-radius: 0;
+  margin-top: 65px;
+  border-radius: 0;
+  margin-bottom: 0;
 }
 
 .para {
@@ -218,7 +229,7 @@ nav a:hover {
   margin-bottom: 10px;
 }
 
-h4, th, td {
+h4, h5, th, td {
   font-family: 'Montserrat', sans-serif;
   color: #fff;
 }
@@ -234,4 +245,20 @@ th {
 
 td {
 
+}
+
+/* ------------results------------- */
+
+.jumbotron {
+  margin-top: 120px;
+  background-color: rgba(255,255,255, 0.2);
+}
+
+.h5{
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.res-para {
+  color: #F5F5F5;
 }

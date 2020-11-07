@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include ('partials/meta') %>
-  </head>
-  <body>
-    <%- include('partials/navbar') %>
 
-<div class="container">
+<head>
+  <%- include ('partials/header') %>
 
-  <% userForms.forEach(function(user){ %>
+  <div class="container">
+
+    <% userForms.forEach(function(user){ %>
     <h4>Form Title : <%= user.formTitle %></h4>
     <div class="card card-css">
       <div class="card-body">
@@ -117,24 +115,28 @@
             <tr>
               <td>Total Units Produced</td>
               <td><%= user.totalUnitsProduced %></td>
-              <td>(₹)Rupees</td>
+              <td>per Kg.</td>
             </tr>
             <tr>
               <td>Total Units Sold</td>
               <td><%= user.totalUnitsSold %></td>
-              <td>(₹)Rupees</td>
+              <td>per Kg.</td>
             </tr>
             <tr>
               <td>Total Sales</td>
               <td><%= user.totalSales %></td>
               <td>(₹)Rupees</td>
             </tr>
-
-              <tr>
-                <th>Net Income</th>
-                <th><%= user.netIncome %></th>
-                <th>(₹)Rupees</th>
-              </tr>
+            <tr>
+              <th>Expected Net Income <br>(based on SP per unit)</th>
+              <th><%= user.expectedNetIncome %></th>
+              <th>(₹)Rupees</th>
+            </tr>
+            <tr>
+              <th>Net Income</th>
+              <th><%= user.netIncome %></th>
+              <th>(₹)Rupees</th>
+            </tr>
 
 
 
@@ -142,10 +144,10 @@
         </table>
       </div>
     </div>
-  <% }); %>
-</div>
+    <% }); %>
+  </div>
 
 
-    <%- include ('partials/jquery') %>
-  </body>
+  <%- include ('partials/footer') %>
+
 </html>
