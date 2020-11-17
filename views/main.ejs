@@ -5,9 +5,9 @@
   <%- include('partials/header') %>
 
   <div class="container">
-    <h1 class="title">Input Form</h1>
+    <h1 class="title" data-aos="fade-right" data-aos-delay="500">Input Form</h1>
 
-    <div class="card">
+    <div class="card" data-aos="fade-right" data-aos-delay="500">
       <div class="card-body">
 
         <form class="" action="/main" method="POST">
@@ -49,8 +49,24 @@
                   </div>
                 </div>
               </div>
+            </div>
 
+            <div class="form-group col-md-12">
+              <label class="label-register label-name">Government :</label><i class="italic"> - Optional</i>
+              <div class="card">
+                <div class="card-body">
 
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Money Incentive</label><i class="italic"> (if any)</i>
+                    <input type="number" class="form-control" name="moneyIncentive" placeholder="Enter the amount">
+                  </div>
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Land Incentive</label><i class="italic"> (if any)</i>
+                    <input type="number" class="form-control" name="landIncentive" placeholder="Enter the total area of land">
+                  </div>
+
+                </div>
+              </div>
             </div>
 
             <div class="form-group col-md-6">
@@ -74,11 +90,12 @@
               <input type="number" class="form-control" name="farmLandRent" placeholder="Enter Land Rent">
             </div>
 
+
+
             <div class="form-group col-md-12">
               <label class="label-register label-name">Expenses :</label>
               <div class="card">
                 <div class="card-body">
-
 
                   <div class="form-group col-md-8">
                     <label class="label-register label-expenses-name">Godown Rent</label>
@@ -116,8 +133,10 @@
                     <label class="label-register label-expenses-name">Transport Cost</label>
                     <input type="number" class="form-control" name="transportCost" placeholder="Enter the Transport Cost">
                   </div>
-
-
+                  <div class="form-group col-md-8">
+                    <label class="label-register label-expenses-name">Others</label><i class="italic"> (if any remaining)</i>
+                    <input type="number" class="form-control" name="otherExpenses" placeholder="Enter the Transport Cost">
+                  </div>
 
                 </div>
               </div>
@@ -128,7 +147,7 @@
               <input type="number" class="form-control" name="sellingPricePerUnit" placeholder="Enter Cost per unit ">
             </div>
             <div class="form-group col-md-6">
-              <label class="label-register label-name">Discounts</label><i class="italic"> - Optional</i>
+              <label class="label-register label-name">Discounts (%)</label><i class="italic"> - Optional</i>
               <input type="number" class="form-control" name="discounts" placeholder="Enter discounts (if any) ">
             </div>
             <div class="form-group col-md-6">

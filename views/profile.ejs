@@ -7,8 +7,8 @@
   <div class="container">
 
     <% userForms.forEach(function(user){ %>
-    <h4>Form Title : <%= user.formTitle %></h4>
-    <div class="card card-css">
+    <h4 data-aos="fade-right" data-aos-delay="200">Form Title : <%= user.formTitle %></h4>
+    <div class="card card-css" data-aos="fade-right">
       <div class="card-body">
         <table class="table">
           <tr>
@@ -42,6 +42,36 @@
               <td><%= user.areaOfLandUsed %></td>
               <td>sq ft.</td>
             </tr>
+
+            <% if (!user.Government.landIncentive == null || !user.Government.landIncentive == 0) { %>
+            <tr>
+              <td>(Govt.) Land Incentive</td>
+              <td><%= user.Government.landIncentive %></td>
+              <td>sq ft.</td>
+            </tr>
+            <% } %>
+            <% if (!user.Government.moneyIncentive == null || !user.Government.moneyIncentive == 0) { %>
+            <tr>
+              <td>(Govt.) Money Incentive</td>
+              <td><%= user.Government.moneyIncentive %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <% } %>
+
+            <% if (!user.Government.landIncentive == null || !user.Government.landIncentive == 0) { %>
+              <tr>
+                <td>Total Land Available </td>
+                <td><%= user.totalLandAvailable %></td>
+                <td>sq ft.</td>
+              </tr>
+              <tr>
+                <td>Total Land Used </td>
+                <td><%= user.totalLandUsed %></td>
+                <td>sq ft.</td>
+              </tr>
+
+            <% } %>
+
             <tr>
               <td>Labourers Hired</td>
               <td><%= user.labourersHired %></td>
@@ -57,6 +87,7 @@
               <td><%= user.farmLandRent %></td>
               <td>(₹)Rupees</td>
             </tr>
+
             <tr>
               <td>Godwon Rent</td>
               <td><%= user.Expenses.godownRent %></td>
@@ -103,6 +134,11 @@
               <td>(₹)Rupees</td>
             </tr>
             <tr>
+              <td>Others</td>
+              <td><%= (user.Expenses.otherExpenses == null || user.Expenses.otherExpenses == 0) ? '-' : user.Expenses.otherExpenses %></td>
+              <td>(₹)Rupees</td>
+            </tr>
+            <tr>
               <td>Selling Price per Unit</td>
               <td><%= user.sellingPricePerUnit %></td>
               <td>(₹)Rupees</td>
@@ -110,7 +146,7 @@
             <tr>
               <td>Discounts</td>
               <td><%= user.discounts %></td>
-              <td>(₹)Rupees</td>
+              <td>(%)Percentage</td>
             </tr>
             <tr>
               <td>Total Units Produced</td>

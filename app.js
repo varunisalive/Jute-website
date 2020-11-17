@@ -38,7 +38,7 @@ app.use(function(req, res, next){
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb://localhost:27017/usersDB", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://admin-varun:"+process.env.PASSWORD+"@cluster0.s0d1w.mongodb.net/usersDB?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
 
 const formSchema = new mongoose.Schema({
@@ -55,8 +55,14 @@ const formSchema = new mongoose.Schema({
     mestaJute: {type: String},
     juteCuttings: {type: String}
   },
+  Government: {
+    moneyIncentive: {type: Number},
+    landIncentive : {type: Number}
+  },
   areaOfLandOwned: {type: Number},
   areaOfLandUsed: {type: Number},
+  totalLandAvailable: {type: Number},
+  totalLandUsed: {type: Number},
   labourersHired: {type: Number},
   labourersWagePerDay: {type: Number},
   farmLandRent: {type: Number},
@@ -69,7 +75,8 @@ const formSchema = new mongoose.Schema({
     ploughingCost: {type: Number},
     irrigationCost: {type: Number},
     harvestingCost: {type: Number},
-    transportCost: {type: Number}
+    transportCost: {type: Number},
+    otherExpenses: {type: Number}
   },
   sellingPricePerUnit: {type: Number},
   discounts: {type: Number},
@@ -289,6 +296,9 @@ app.post("/main", function(req, res){
   const labourersHired = req.body.labourersHired;
   const labourersWagePerDay = req.body.labourersWagePerDay;
   const farmLandRent = req.body.farmLandRent;
+  //Govt. Incentives
+  const moneyIncentive = req.body.moneyIncentive;
+  const landIncentive = req.body.landIncentive;
   // More Expenses
   const godownRent = req.body.godownRent;
   const seedsCost = req.body.seedsCost;
@@ -299,6 +309,7 @@ app.post("/main", function(req, res){
   const irrigationCost = req.body.irrigationCost;
   const harvestingCost = req.body.harvestingCost;
   const transportCost = req.body.transportCost;
+  const otherExpenses = req.body.otherExpenses;
   //Sales
   const sellingPricePerUnit = req.body.sellingPricePerUnit;
   const discounts = req.body.discounts;
@@ -319,8 +330,15 @@ app.post("/main", function(req, res){
   //Total expense of hiring the labourers
   var totalLabourersExpense = parseFloat(labourersHired) * labourersTotalWage;
 
+  //Total Land Available & Land Used
+  var totalLandAvailable = parseFloat(areaOfLandOwned) + parseFloat(landIncentive);
+  var totalLandUsed = parseFloat(areaOfLandUsed) + parseFloat(landIncentive);
+
+  //Discount
+  var discount = (parseFloat(discounts) / 100) * parseFloat(totalSales);
+
   //Rest of the expenses
-  var expenses = parseFloat(farmLandRent) + parseFloat(godownRent) + parseFloat(seedsCost) + parseFloat(plantProtectionChemicalCost) + parseFloat(farmYardManureCost) + parseFloat(fertilizersCost) + parseFloat(ploughingCost) + parseFloat(irrigationCost) + parseFloat(harvestingCost) + parseFloat(transportCost) + parseFloat(farmLandRent) + parseFloat(discounts);
+  var expenses = parseFloat(farmLandRent) + parseFloat(godownRent) + parseFloat(seedsCost) + parseFloat(plantProtectionChemicalCost) + parseFloat(farmYardManureCost) + parseFloat(fertilizersCost) + parseFloat(ploughingCost) + parseFloat(irrigationCost) + parseFloat(harvestingCost) + parseFloat(transportCost) + parseFloat(farmLandRent) + discount ;
 
   //Total Expenses
   var totalExpenses = totalLabourersExpense + expenses;
@@ -350,8 +368,14 @@ app.post("/main", function(req, res){
       mestaJute: mestaJute,
       juteCuttings: juteCuttings
     },
+    Government: {
+      moneyIncentive: moneyIncentive,
+      landIncentive: landIncentive
+    },
     areaOfLandOwned: areaOfLandOwned,
     areaOfLandUsed: areaOfLandUsed,
+    totalLandAvailable: totalLandAvailable,
+    totalLandUsed: totalLandUsed,
     labourersHired: labourersHired,
     labourersWagePerDay: labourersWagePerDay,
     farmLandRent: farmLandRent,
@@ -364,7 +388,8 @@ app.post("/main", function(req, res){
       ploughingCost: ploughingCost,
       irrigationCost: irrigationCost,
       harvestingCost: harvestingCost,
-      transportCost: transportCost
+      transportCost: transportCost,
+      otherExpenses: otherExpenses
     },
 
     sellingPricePerUnit: sellingPricePerUnit,
@@ -394,8 +419,8 @@ app.get("/results", function(req, res){
     } else {
       if(post){
         res.render("results", {
-          currentUser: req.user,
-          userForm: post
+          userForm: post,
+          currentUser: req.user
         });
       }
     }
@@ -422,6 +447,11 @@ app.get("/profile/:userID", function(req, res){
   });
 });
 
-app.listen(3000, function(req, res){
+let port = process.env.PORT;
+if (port == null || port == ""){
+  port = 3000;
+}
+
+app.listen(port, function(req, res){
   console.log("The server is ready at port 3000");
 });

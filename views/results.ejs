@@ -6,7 +6,7 @@
 
 
   <div class="container">
-    <div class="jumbotron">
+    <div class="jumbotron" data-aos="fade-right" data-aos-delay="500">
       <% userForm.forEach(function(user){ %>
       <h1 class="display-4">Your Net Income is :<br>₹ <%= user.netIncome %></h1>
       <p class="h5">The Expected Net Income based on Selling Price per Unit is : ₹<%=user.expectedNetIncome%></p>
@@ -15,7 +15,7 @@
       <% if (user.leftoverUnits == 0){ %>
         <p class="res-para">You don't have any leftover units waiting to be sold.</p>
       <% } else if (user.leftoverUnits != null){ %>
-        <p class="res-para">You still have <%=user.leftoverUnits%> unit / units (1kg. each) left. You can earn ₹<%= user.leftoverUnitsPrice%> more.</p>
+        <p class="res-para">You still have <%=user.leftoverUnits%> unit / units (1kg. each) left.<br> You can earn ₹<%= user.leftoverUnitsPrice%> more.</p>
       <% } %>
 
       <hr class="my-4">
